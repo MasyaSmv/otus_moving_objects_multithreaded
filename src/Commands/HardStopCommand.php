@@ -13,8 +13,6 @@ class HardStopCommand implements CommandInterface
 
     public function execute(): void
     {
-        error_log("[HardStopCommand] execute()");
         $this->mgr->hardStop();
-        error_log("[HardStopCommand] done()");
     }
 }

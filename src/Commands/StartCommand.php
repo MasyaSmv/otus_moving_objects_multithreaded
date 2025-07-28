@@ -7,6 +7,11 @@ use Masyasmv\Multithreaded\Manager;
 
 class StartCommand implements CommandInterface
 {
-    public function __construct(private Manager $mgr) {}
-    public function execute(): void { /* ничего: старт происходит в конструкторе */ }
+    public function __construct(private Manager $mgr)
+    {
+    }
+
+    public function execute(): void
+    { /* ничего: старт происходит в конструкторе */
+    }
 }

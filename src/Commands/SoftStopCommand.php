@@ -13,8 +13,6 @@ class SoftStopCommand implements CommandInterface
 
     public function execute(): void
     {
-        error_log("[SostStopCommand] execute()");
         $this->mgr->softStop();
-        error_log("[SoftStopCommand] done()");
     }
 }
