@@ -1,5 +1,6 @@
 name: CI
 
+# Триггеры: пуши и PR в main и develop
 on:
   push:
     branches: [ main, develop ]
@@ -7,14 +8,18 @@ on:
     branches: [ main, develop ]
 
 jobs:
-  tests:
+  build-and-test:
     runs-on: ubuntu-latest
+
     steps:
+      # 1) Синхронизируем код
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # 2) Собираем образ по вашему Dockerfile
       - name: Build Docker image
         run: docker build -t otus-multithreaded .
 
-      - name: Run PHPUnit inside container
+      # 3) Прогоняем PHPUnit внутри контейнера
+      - name: Run PHPUnit tests in Docker
         run: docker run --rm otus-multithreaded vendor/bin/phpunit --colors=always
