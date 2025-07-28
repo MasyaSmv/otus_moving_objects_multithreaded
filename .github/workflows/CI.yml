@@ -1,4 +1,4 @@
-name: workflow.yml
+name: CI
 
 on:
   push:
@@ -17,9 +17,14 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
+          extensions: parallel
+          ini-values: |
+            extension=parallel.so
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
+        run: |
+          composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run PHPUnit
-        run: vendor/bin/phpunit --colors=always
+        run: |
+          vendor/bin/phpunit --colors=always
