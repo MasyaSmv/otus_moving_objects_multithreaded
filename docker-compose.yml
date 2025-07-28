@@ -1,6 +1,10 @@
+version: '3.8'
+
 services:
   php:
     build: .
     volumes:
-      - ./:/app
+      - ./:/app:cached
     working_dir: /app
+    # автоматически запустит phpunit при старте контейнера
+    command: ["vendor/bin/phpunit", "--colors=always"]
